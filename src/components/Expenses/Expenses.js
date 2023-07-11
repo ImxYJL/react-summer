@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import './Expenses.css';
 import Card from '../UI/Card';
-import ExpenseItem from "./ExpenseItem";
+import ExpensesList from "./ExpensesList";
 import ExpensesFilter from '../Filter/ExpenseFilter';
+import ExpenseChart from './ExpensesChart';
+
+
 
 function Expenses(props){
     const [selectedYear, setSelectedYear] = useState('2020');
@@ -18,18 +21,7 @@ function Expenses(props){
     //내 코드
     //const selectedYears = props.items.filter((expense) => (expense.date.getFullYear() == selectedYear));
 
-    let expensesContent = <p>No expenses found.</p>;
-
-    if(selectedYears.length > 0){
-        expensesContent = selectedYears.map((expense) => (
-            <ExpenseItem 
-                key = {expense.id}
-                title={expense.title} 
-                amount={expense.amount} 
-                date={expense.date}
-            />
-        ));
-    }
+    
 
     return(
         <div>
@@ -38,8 +30,8 @@ function Expenses(props){
                     onChangeFilter={filterChangeHandler}
                     selected={selectedYear}
                 />
-                {expensesContent}
-                    
+                <ExpenseChart expenses={selectedYears}/>
+                <ExpensesList items={selectedYears}></ExpensesList>
                 {/* <ExpenseItem title={props.items[0].title} amount={props.items[0].amount} date={props.items[0].date}/>
                 <ExpenseItem title={props.items[1].title} amount={props.items[1].amount} date={props.items[1].date}/>
                 <ExpenseItem title={props.items[2].title} amount={props.items[2].amount} date={props.items[2].date}/>

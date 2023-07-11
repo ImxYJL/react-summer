@@ -37,7 +37,7 @@ const ExpenseForm = (props) => {
         //데이터 하나로 모으기
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
+            amount: +enteredAmount, //+ : 문자열 -> 숫자로 변환
             date: new Date(enteredDate)
         }
 
@@ -46,6 +46,7 @@ const ExpenseForm = (props) => {
         setEnteredAmount('');
         setEnteredDate('');
     };
+
 
     return(
         <form onSubmit={submitHandler}>
@@ -73,13 +74,15 @@ const ExpenseForm = (props) => {
                     <input 
                         type='date' 
                         onChange={dateChangeHandler} 
-                        min="2020-01-01" 
+                        min="2019-01-01" 
                         max="2023-12-31"
                     />
                 </div>
             </div>
-            <div className="new-expense__actions"></div>
+            <div className="new-expense__actions">
+                <button type='button' onClick={props.onCancel}>Cancel</button>
                 <button type='submit'>Add Expense</button>
+            </div>
         </form>
     );
 }

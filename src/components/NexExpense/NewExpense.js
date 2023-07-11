@@ -30,7 +30,8 @@ const NewExpense = (props) => {
             {displayForm && 
                 (<ExpenseForm 
                     onSaveExpenseData={saveExpenseDataHandler} 
-                    onCancel={cancelHandler}/>) }
+                    onCancel={cancelHandler}
+                />) }
         </div>
     );
 };
